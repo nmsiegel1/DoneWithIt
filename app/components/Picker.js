@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  TextInput,
   View,
   StyleSheet,
   TouchableWithoutFeedback,
@@ -10,23 +9,23 @@ import {
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
+import Text from "./Text";
 import defaultStyles from "../config/styles";
-import AppText from "./Text";
-import Screen from "./Screen";
 import PickerItem from "./PickerItem";
+import Screen from "./Screen";
 
 function AppPicker({
   icon,
   items,
-  onSelectItem,
   numberOfColumns = 1,
+  onSelectItem,
   PickerItemComponent = PickerItem,
   placeholder,
   selectedItem,
-  width,
-  ...otherProps
+  width = "100%",
 }) {
   const [modalVisible, setModalVisible] = useState(false);
+
   return (
     <>
       <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
@@ -40,10 +39,11 @@ function AppPicker({
             />
           )}
           {selectedItem ? (
-            <AppText style={styles.text}>{selectedItem.label} </AppText>
+            <Text style={styles.text}>{selectedItem.label}</Text>
           ) : (
-            <AppText style={styles.placeholder}>{placeholder}</AppText>
+            <Text style={styles.placeholder}>{placeholder}</Text>
           )}
+
           <MaterialCommunityIcons
             name="chevron-down"
             size={20}
@@ -53,7 +53,7 @@ function AppPicker({
       </TouchableWithoutFeedback>
       <Modal visible={modalVisible} animationType="slide">
         <Screen>
-          <Button title="close" onPress={() => setModalVisible(false)} />
+          <Button title="Close" onPress={() => setModalVisible(false)} />
           <FlatList
             data={items}
             keyExtractor={(item) => item.value.toString()}
