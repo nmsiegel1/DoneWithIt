@@ -97,6 +97,8 @@ This project is liscensed under the MIT liscense.
 
 Made by Nina Siegel
 
+From The Ultimate React Native Course from Code With Mosh
+
 ## Questions
 
 For questions, email me at siegel.nina.m@gmail.com
